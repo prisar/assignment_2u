@@ -1,4 +1,4 @@
-Steps I followed:
+## Steps I followed
 
 1) Run syncdb command to sync models to database and create Django's default superuser and auth system
 
@@ -29,16 +29,29 @@ Steps I followed:
 7) Create database and role
 
     $ sudo su - postgres
+
     $ psql
+
     $ CREATE DATABASE udaan;
+
     $ CREATE USER udaanuser WITH PASSWORD 'password';
+
     $ ALTER ROLE udaanuser SET client_encoding TO 'utf8'; 
+
     $ ALTER ROLE udaanuser SET default_transaction_isolation TO 'read committed'; 
+
     $ ALTER ROLE udaanuser SET timezone TO 'UTC';
+
     $ GRANT ALL PRIVILEGES ON DATABASE udaan TO udaanuser; 
-    
+
 8) Query Database
 
     $ psql -h localhost -d udaan -U udaanuser -W
+
     $ \q
 
+9) Auth
+
+    $ python manage.py startapp auth_api
+
+10) 
