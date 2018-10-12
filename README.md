@@ -1,22 +1,4 @@
-
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
-
-
-Welcome to your Django project on Cloud9 IDE!
-
-Your Django project is already fully setup. Just click the "Run" button to start
-the application. On first run you will be asked to create an admin user. You can
-access your application from 'https://udaan-pritimay.c9users.io/' and the admin page from 
-'https://udaan-pritimay.c9users.io/admin'.
-
-## Starting from the Terminal
-
-In case you want to run your Django application from the terminal just run:
+Steps I followed:
 
 1) Run syncdb command to sync models to database and create Django's default superuser and auth system
 
@@ -25,18 +7,38 @@ In case you want to run your Django application from the terminal just run:
 2) Run Django
 
     $ python manage.py runserver $IP:$PORT
+
+3) Create superuser for with admin role for the application
+
+    $ python manage.py createsuperuser
+
+4) Install postgresql
+
+    $ sudo apt-get update
+
+    $ sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-contrib
+
+5) Install psycopg2
+
+    $ sudo pip install psycopg2
+
+6) Start service
+
+    $ sudo service postgresql start
+
+7) Create database and role
+
+    $ sudo su - postgres
+    $ psql
+    $ CREATE DATABASE udaan;
+    $ CREATE USER udaanuser WITH PASSWORD 'password';
+    $ ALTER ROLE udaanuser SET client_encoding TO 'utf8'; 
+    $ ALTER ROLE udaanuser SET default_transaction_isolation TO 'read committed'; 
+    $ ALTER ROLE udaanuser SET timezone TO 'UTC';
+    $ GRANT ALL PRIVILEGES ON DATABASE udaan TO udaanuser; 
     
-## Configuration
+8) Query Database
 
-You can configure your Python version and `PYTHONPATH` used in
-Cloud9 > Preferences > Project Settings > Language Support.
+    $ psql -h localhost -d udaan -U udaanuser -W
+    $ \q
 
-## Support & Documentation
-
-Django docs can be found at https://www.djangoproject.com/
-
-You may also want to follow the Django tutorial to create your first application:
-https://docs.djangoproject.com/en/1.9/intro/tutorial01/
-
-Visit http://docs.c9.io for support, or to learn more about using Cloud9 IDE.
-To watch some training videos, visit http://www.youtube.com/user/c9ide
