@@ -54,4 +54,10 @@
 
     $ python manage.py startapp auth_api
 
-10) 
+10) rest framework
+
+    $ sudo pip install djangorestframework
+
+11) Wrote models and applied Make migrations
+
+    $ python manage.py makemigrations
